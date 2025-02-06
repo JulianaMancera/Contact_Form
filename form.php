@@ -1,3 +1,16 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST["name"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $message = htmlspecialchars($_POST["message"]);
+    
+    $thankYouMessage = "<div class='thank-you'>";
+    $thankYouMessage .= "<h2>Thank you, $name!</h2>";
+    $thankYouMessage .= "<p>We have received your message and will get back to you soon.</p>";
+    $thankYouMessage .= "</div>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,18 +36,7 @@
         </form>
         <p id="statusMessage" style="display:none; color: lime;"></p>
         
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $name = htmlspecialchars($_POST["name"]);
-            $email = htmlspecialchars($_POST["email"]);
-            $message = htmlspecialchars($_POST["message"]);
-            
-            echo "<div class='thank-you'>";
-            echo "<h2>Thank you, $name!</h2>";
-            echo "<p>We have received your message and will get back to you soon.</p>";
-            echo "</div>";
-        }
-        ?>
+        <?php if (isset($thankYouMessage)) echo $thankYouMessage; ?>
     </div>
 </body>
 </html>
